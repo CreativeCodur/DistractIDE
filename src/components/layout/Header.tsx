@@ -62,7 +62,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-gray-900 dark:bg-gray-100 border-b border-gray-700 dark:border-gray-300">
+    <header className="sticky top-0 z-40 w-full bg-dark-600 dark:bg-light-200 border-b border-dark-400/30 dark:border-light-400/30">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto">
         <div className="flex items-center space-x-4">
           <Link to="/" className="flex items-center space-x-2">
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <motion.button
-              className="p-2 rounded-lg text-white dark:text-black bg-gray-800 dark:bg-gray-200"
+              className="p-2 rounded-lg text-light-300 dark:text-dark-500 bg-dark-500 dark:bg-light-300"
               onClick={toggleMobileMenu}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden absolute top-16 inset-x-0 z-50 bg-gray-800 dark:bg-gray-200 border-b border-gray-700 dark:border-gray-300 shadow-lg"
+            className="md:hidden absolute top-16 inset-x-0 z-50 bg-dark-600 dark:bg-light-200 border-b border-dark-400/30 dark:border-light-400/30 shadow-lg"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
                       className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors font-mono ${
                         location.pathname === link.path
                           ? 'bg-theme-light text-theme'
-                          : 'text-white dark:text-black hover:bg-gray-700 dark:hover:bg-gray-300'
+                          : 'text-light-300 dark:text-dark-500 hover:bg-dark-400/30 dark:hover:bg-light-400/30'
                       }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >

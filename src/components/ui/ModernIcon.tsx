@@ -1,20 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
-import { 
-  FiBrain, FiCpu, FiEye, FiMessageSquare, FiThumbsUp, 
-  FiGamepad, FiPenTool, FiActivity, FiSearch, FiRepeat,
+import {
+  FiCpu, FiEye, FiMessageSquare, FiThumbsUp,
+  FiActivity, FiSearch, FiRepeat,
   FiArrowRight, FiArrowLeft, FiX, FiCheck, FiRefreshCw
 } from 'react-icons/fi';
+// Import our custom icon shims
+import { FiBrain, FiGamepad, FiPenTool } from './IconShims';
 
-type IconType = 
-  | 'brain' 
-  | 'cpu' 
-  | 'eye' 
-  | 'message' 
-  | 'thumbsUp' 
-  | 'game' 
-  | 'art' 
+type IconType =
+  | 'brain'
+  | 'cpu'
+  | 'eye'
+  | 'message'
+  | 'thumbsUp'
+  | 'game'
+  | 'art'
   | 'science'
   | 'search'
   | 'repeat'
@@ -43,7 +45,7 @@ const ModernIcon: React.FC<ModernIconProps> = ({
   className = ''
 }) => {
   const { themeColor } = useTheme();
-  
+
   // Determine size dimensions
   const getSize = () => {
     switch (size) {
@@ -53,7 +55,7 @@ const ModernIcon: React.FC<ModernIconProps> = ({
       default: return { width: '24px', height: '24px', fontSize: '24px' };
     }
   };
-  
+
   // Get the appropriate icon component
   const getIcon = () => {
     switch (type) {
@@ -80,7 +82,7 @@ const ModernIcon: React.FC<ModernIconProps> = ({
       default: return <FiBrain />;
     }
   };
-  
+
   // Animation variants
   const iconVariants = {
     static: {},
@@ -93,7 +95,7 @@ const ModernIcon: React.FC<ModernIconProps> = ({
       }
     }
   };
-  
+
   // Get specific animations based on icon type
   const getSpecificAnimation = () => {
     switch (type) {
@@ -158,13 +160,13 @@ const ModernIcon: React.FC<ModernIconProps> = ({
         };
     }
   };
-  
+
   const animationVariant = getSpecificAnimation();
-  
+
   return (
     <motion.div
       className={`flex items-center justify-center text-theme ${className}`}
-      style={{ 
+      style={{
         ...getSize(),
         color: themeColor
       }}

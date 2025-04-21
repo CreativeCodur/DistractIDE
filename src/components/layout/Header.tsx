@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors font-mono ${
                       location.pathname === link.path
                         ? 'bg-theme-light text-theme'
-                        : 'text-light-300 dark:text-dark-500 hover:bg-dark-400/30 dark:hover:bg-light-400/30'
+                        : 'text-light-300 dark:text-dark-500 hover:bg-transparent hover:text-theme dark:hover:bg-transparent dark:hover:text-theme'
                     }`}
                   >
                     {link.label}
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
                       className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors font-mono ${
                         location.pathname === link.path
                           ? 'bg-theme-light text-theme'
-                          : 'text-light-300 dark:text-dark-500 hover:bg-dark-400/30 dark:hover:bg-light-400/30'
+                          : 'text-light-300 dark:text-dark-500 hover:bg-transparent hover:text-theme dark:hover:bg-transparent dark:hover:text-theme'
                       }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >

@@ -2,12 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import {
-  FiCpu, FiEye, FiMessageSquare, FiThumbsUp,
-  FiActivity, FiSearch, FiRepeat,
+  FiBrain, FiCpu, FiEye, FiMessageSquare, FiThumbsUp,
+  FiGamepad, FiPenTool, FiActivity, FiSearch, FiRepeat,
   FiArrowRight, FiArrowLeft, FiX, FiCheck, FiRefreshCw
 } from 'react-icons/fi';
-// Import our custom icon shims
-import { FiBrain, FiGamepad, FiPenTool } from './IconShims';
 
 type IconType =
   | 'brain'

@@ -11,10 +11,10 @@ const SettingsPage: React.FC = () => {
   const { setShowTutorials, startTutorial } = useTutorial();
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
 
-  // Generate 10 pastel-ish dark colors with white as default
+  // Generate 10 pastel-ish dark colors with dark-pastel green as default
   const generateThemeColors = () => {
-    // Start with white as the default
-    const colors = ['#ffffff']; // White
+    // Start with dark-pastel green as the default
+    const colors = ['#009b77']; // Dark-pastel green
 
     // Add 9 pastel-ish dark colors
     colors.push('#6b5b95'); // Pastel purple

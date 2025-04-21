@@ -22,11 +22,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     () => (localStorage.getItem('theme') as Theme) || (prefersDarkMode ? 'dark' : 'light')
   );
 
-  // Initialize theme color from localStorage or default (white)
+  // Initialize theme color from localStorage or default (dark-pastel green)
   const [themeColor, setThemeColor] = useState<ThemeColor>(() => {
     const savedColor = localStorage.getItem('themeColor');
-    console.log('Loading theme color from localStorage:', savedColor || '#ffffff (default)');
-    return savedColor || '#ffffff';
+    console.log('Loading theme color from localStorage:', savedColor || '#009b77 (default)');
+    return savedColor || '#009b77';
   });
 
   // Update localStorage and document class when theme changes

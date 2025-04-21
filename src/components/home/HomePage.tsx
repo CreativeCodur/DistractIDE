@@ -34,10 +34,10 @@ const HomePage: React.FC = () => {
   const logoText = theme === 'dark' ? logoTextLight : logoTextDark;
 
   return (
-    <div className="space-y-48 relative">
+    <div className="space-y-24 md:space-y-36 lg:space-y-48 relative">
       {/* Global wind whooshing effect */}
       <WindWhoosh side="both" intensity="medium" />
-      <section className="text-center mx-auto relative min-h-[90vh] flex flex-col justify-center w-full">
+      <section className="text-center mx-auto relative min-h-[70vh] sm:min-h-[80vh] md:min-h-[90vh] flex flex-col justify-center w-full px-2 sm:px-4 overflow-hidden">
         {/* Neural network background animation - full screen */}
         <div className="absolute inset-0 -z-10 w-full h-full">
           <div className="w-full h-full">
@@ -51,19 +51,19 @@ const HomePage: React.FC = () => {
             />
           </div>
         </div>
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto">
           {/* Removed animated shapes for welcome section */}
           <motion.h1
-          className="text-4xl font-bold mb-6 flex items-center justify-center gap-3"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 flex flex-wrap items-center justify-center gap-1 sm:gap-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Welcome to
-          <div className="flex items-center">
-            <img src={logoText} alt="DistractIDE" className="h-10 mr-2" />
+          <div className="flex flex-wrap items-center justify-center mt-1">
+            <img src={logoText} alt="DistractIDE" className="h-5 sm:h-6 md:h-8 mr-1" />
             <div className="tooltip-container">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-theme-light text-theme animate-pulse cursor-help">
+              <span className="inline-flex items-center px-1 sm:px-1.5 py-0.5 rounded-full text-[8px] sm:text-[10px] font-medium bg-theme-light text-theme animate-pulse cursor-help">
                 BETA
               </span>
               <div className="tooltip tooltip-bottom">
@@ -73,54 +73,54 @@ const HomePage: React.FC = () => {
           </div>
         </motion.h1>
           <motion.div
-          className="h-10 mb-8 flex justify-center"
+          className="h-5 sm:h-6 md:h-8 mb-2 sm:mb-3 md:mb-4 lg:mb-6 flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="text-xl typewriter-effect inline-block tracking-wide">
-            Learn neural networks without distractions
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg typewriter-effect inline-block tracking-wide">
+            All AI, no distractions.
           </p>
         </motion.div>
 
           <motion.div
-          className="flex flex-wrap justify-center gap-6 md:gap-8 relative"
+          className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 relative w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           {/* Removed animated shapes for buttons section */}
-          <Link to="/no-distraction" className="flex-1 min-w-[280px] max-w-[400px]">
-            <GlassButton className="h-full flex flex-col items-start p-6 md:p-7 w-full accent-bg accent-text text-left">
-              <div className="flex items-center mb-1">
-                <FiCpu className="mr-2 text-lg" />
-                <span className="font-medium text-lg">No-Distraction Mode</span>
-                <div className="tooltip-container ml-2">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-theme-light text-theme animate-pulse cursor-help">BETA</span>
+          <Link to="/no-distraction" className="w-full sm:flex-1 max-w-full sm:max-w-[300px] md:max-w-[350px] mb-2 sm:mb-0">
+            <GlassButton className="h-full flex flex-col items-start p-2 sm:p-3 md:p-4 lg:p-5 w-full accent-bg accent-text text-left">
+              <div className="flex flex-wrap items-center mb-1">
+                <FiCpu className="mr-1 text-sm sm:text-base" />
+                <span className="font-medium text-xs sm:text-sm md:text-base">No-Distraction Mode</span>
+                <div className="tooltip-container ml-1 sm:ml-2">
+                  <span className="inline-flex items-center px-1 py-0.5 rounded-full text-[8px] sm:text-[10px] font-medium bg-theme-light text-theme animate-pulse cursor-help">BETA</span>
                   <div className="tooltip">
                     <FiInfo className="inline-block mr-1" /> This feature is in beta and may not be fully functional or accurate. Use at your own risk.
                   </div>
                 </div>
               </div>
-              <p className="text-sm opacity-90 line-clamp-3">
+              <p className="text-[8px] sm:text-[10px] md:text-xs opacity-90 line-clamp-2 sm:line-clamp-3">
                 Build neural networks using a simple button-based interface. Perfect for beginners who want to understand the basic concepts without writing code.
               </p>
             </GlassButton>
           </Link>
 
-          <Link to="/low-distraction" className="flex-1 min-w-[280px] max-w-[400px]">
-            <GlassButton className="h-full flex flex-col items-start p-6 md:p-7 w-full accent-bg accent-text text-left">
-              <div className="flex items-center mb-1">
-                <FiCode className="mr-2 text-lg" />
-                <span className="font-medium text-lg">Low-Distraction Mode</span>
-                <div className="tooltip-container ml-2">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-theme-light text-theme animate-pulse cursor-help">BETA</span>
+          <Link to="/low-distraction" className="w-full sm:flex-1 max-w-full sm:max-w-[300px] md:max-w-[350px]">
+            <GlassButton className="h-full flex flex-col items-start p-2 sm:p-3 md:p-4 lg:p-5 w-full accent-bg accent-text text-left">
+              <div className="flex flex-wrap items-center mb-1">
+                <FiCode className="mr-1 text-sm sm:text-base" />
+                <span className="font-medium text-xs sm:text-sm md:text-base">Low-Distraction Mode</span>
+                <div className="tooltip-container ml-1 sm:ml-2">
+                  <span className="inline-flex items-center px-1 py-0.5 rounded-full text-[8px] sm:text-[10px] font-medium bg-theme-light text-theme animate-pulse cursor-help">BETA</span>
                   <div className="tooltip">
                     <FiInfo className="inline-block mr-1" /> D-Script is experimental and may have limitations. Syntax errors might not be properly detected.
                   </div>
                 </div>
               </div>
-              <p className="text-sm opacity-90 line-clamp-3">
+              <p className="text-[8px] sm:text-[10px] md:text-xs opacity-90 line-clamp-2 sm:line-clamp-3">
                 Use D-Script, a simple domain-specific language, to build neural networks. Great for those who want to learn the basics of coding neural networks.
               </p>
             </GlassButton>
@@ -129,7 +129,7 @@ const HomePage: React.FC = () => {
 
         {/* Smooth scroll chevron */}
         <motion.div
-          className="absolute bottom-8 left-0 right-0 flex justify-center cursor-pointer"
+          className="absolute bottom-2 sm:bottom-4 md:bottom-6 left-0 right-0 flex justify-center cursor-pointer"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1, repeat: Infinity, repeatType: "reverse" }}
@@ -140,15 +140,15 @@ const HomePage: React.FC = () => {
             });
           }}
         >
-          <div className="p-3 rounded-full bg-theme-light/30 backdrop-blur-sm">
-            <FiArrowRight className="transform rotate-90 text-2xl text-theme" />
+          <div className="p-1.5 sm:p-2 rounded-full bg-theme-light/30 backdrop-blur-sm">
+            <FiArrowRight className="transform rotate-90 text-sm sm:text-lg md:text-xl text-theme" />
           </div>
         </motion.div>
         </div>
       </section>
 
       {/* Understanding Neural Networks Section */}
-      <section className="relative max-w-5xl mx-auto mb-48 pt-24">
+      <section className="relative max-w-5xl mx-auto mb-24 md:mb-36 lg:mb-48 pt-12 md:pt-24 px-4">
         {/* Scroll animation effect */}
         <div className="absolute inset-0 pointer-events-none">
           <ScrollWhoosh direction="right" intensity="light" />
@@ -163,7 +163,7 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-4xl font-semibold mb-12 flex items-center font-mono">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-12 flex items-center font-mono">
               <FiLayers className="mr-3 text-theme" />
               Understanding Neural Networks
             </h2>
@@ -197,14 +197,14 @@ const HomePage: React.FC = () => {
             >
               <WordByWordTextEnhanced
                 text="Neural networks are computer systems inspired by the human brain that learn from examples. They use connected neurons with activation functions to recognize patterns in data and make predictions."
-                className="text-2xl leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl leading-relaxed"
                 delay={0.2}
                 tag="p"
               />
             </motion.div>
 
             {/* Neural Layers Animation */}
-            <div className="my-16">
+            <div className="my-8 md:my-16">
               <NeuralLayersAnimation className="w-full" />
             </div>
 
@@ -216,7 +216,7 @@ const HomePage: React.FC = () => {
             >
               <WordByWordTextEnhanced
                 text="Deep learning networks have multiple neural_network_layers that transform data step by step. The input_layer receives raw data, hidden_layers extract features through convolutional neural network or recurrent neural network, and the output_layer makes predictions."
-                className="text-xl leading-relaxed"
+                className="text-base sm:text-lg md:text-xl leading-relaxed"
                 delay={0.3}
                 tag="p"
               />
@@ -226,7 +226,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* How Neural Networks Work Section */}
-      <section className="relative max-w-5xl mx-auto mb-48 pt-24">
+      <section className="relative max-w-5xl mx-auto mb-24 md:mb-36 lg:mb-48 pt-12 md:pt-24 px-4">
         {/* Scroll animation effect */}
         <div className="absolute inset-0 pointer-events-none">
           <ScrollWhoosh direction="left" intensity="light" />
@@ -256,7 +256,7 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-4xl font-semibold mb-12 flex items-center font-mono">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 md:mb-12 flex items-center font-mono">
               <FiCpu className="mr-3 text-theme" />
               How Neural Networks Work
             </h2>
@@ -270,7 +270,7 @@ const HomePage: React.FC = () => {
           >
             <WordByWordTextEnhanced
               text="AI systems like neural networks excel at tasks that are intuitive for humans but hard to program with explicit rules. Machine learning allows computers to learn from examples using loss functions and optimizers rather than following fixed instructions."
-              className="text-2xl leading-relaxed mb-12"
+              className="text-lg sm:text-xl md:text-2xl leading-relaxed mb-6 md:mb-12"
               delay={0.2}
               tag="p"
             />
@@ -288,8 +288,8 @@ const HomePage: React.FC = () => {
               transition={{ duration: 0.7 }}
               className="text-center mb-8"
             >
-              <h3 className="text-2xl font-medium mb-6 text-theme font-mono">Watch Training in Action</h3>
-              <p className="text-xl">
+              <h3 className="text-xl md:text-2xl font-medium mb-3 md:mb-6 text-theme font-mono">Watch Training in Action</h3>
+              <p className="text-base sm:text-lg md:text-xl">
                 See how a neural network uses <span className="text-theme underline cursor-pointer">backpropagation</span> and <span className="text-theme underline cursor-pointer">gradient descent</span> to learn from mistakes
               </p>
             </motion.div>
@@ -305,28 +305,28 @@ const HomePage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-24 p-12 bg-theme-light/20 rounded-xl"
+            className="mt-12 md:mt-24 p-6 md:p-12 bg-theme-light/20 rounded-xl"
           >
-            <h3 className="text-2xl font-medium mb-8 text-theme font-mono">Why Neural Networks Are So Powerful</h3>
+            <h3 className="text-xl md:text-2xl font-medium mb-4 md:mb-8 text-theme font-mono">Why Neural Networks Are So Powerful</h3>
 
             <div className="space-y-12">
               <WordByWordTextEnhanced
                 text="Neural networks can detect patterns that humans might miss. They excel at image recognition, language processing, and finding correlations in complex data."
-                className="text-xl leading-relaxed mb-4"
+                className="text-base sm:text-lg md:text-xl leading-relaxed mb-4"
                 delay={0.2}
                 tag="p"
               />
 
               <WordByWordTextEnhanced
                 text="During training, networks learn by adjusting weights between neurons over multiple epochs. They use backpropagation and gradient descent with regularization techniques like dropout to minimize errors over time."
-                className="text-xl leading-relaxed mb-4"
+                className="text-base sm:text-lg md:text-xl leading-relaxed mb-4"
                 delay={0.3}
                 tag="p"
               />
 
               <WordByWordTextEnhanced
                 text="Networks must balance between overfitting (memorizing training data) and underfitting (being too simple). Techniques like batch normalization and hyperparameter tuning help models generalize well to new, unseen examples."
-                className="text-xl leading-relaxed"
+                className="text-base sm:text-lg md:text-xl leading-relaxed"
                 delay={0.4}
                 tag="p"
               />
@@ -336,7 +336,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Real-world applications section */}
-      <section className="relative max-w-5xl mx-auto mb-48 pt-24">
+      <section className="relative max-w-5xl mx-auto mb-24 md:mb-36 lg:mb-48 pt-12 md:pt-24 px-4">
         {/* Scroll animation effect */}
         <div className="absolute inset-0 pointer-events-none">
           <ScrollWhoosh direction="right" intensity="medium" />

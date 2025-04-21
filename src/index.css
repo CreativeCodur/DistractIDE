@@ -14,19 +14,19 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Default theme color variables */
-  --theme-color: #ffffff;
-  --theme-color-rgb: 255, 255, 255;
-  --theme-color-light: rgba(255, 255, 255, 0.1);
-  --theme-color-medium: rgba(255, 255, 255, 0.3);
-  --theme-color-dark: rgba(255, 255, 255, 0.8);
+  --theme-color: #009b77;
+  --theme-color-rgb: 0, 155, 119;
+  --theme-color-light: rgba(0, 155, 119, 0.1);
+  --theme-color-medium: rgba(0, 155, 119, 0.3);
+  --theme-color-dark: rgba(0, 155, 119, 0.8);
 
   /* Component variables */
-  --primary-color: #ffffff;
-  --primary-hover: rgba(255, 255, 255, 0.8);
-  --accent-bg: rgba(255, 255, 255, 0.1);
-  --accent-border: rgba(255, 255, 255, 0.3);
-  --accent-text: #ffffff;
-  --focus-ring: rgba(255, 255, 255, 0.5);
+  --primary-color: #009b77;
+  --primary-hover: rgba(0, 155, 119, 0.8);
+  --accent-bg: rgba(0, 155, 119, 0.1);
+  --accent-border: rgba(0, 155, 119, 0.3);
+  --accent-text: #009b77;
+  --focus-ring: rgba(0, 155, 119, 0.5);
 
   /* Light mode colors */
   --bg-primary: #f9fafb;

@@ -137,7 +137,7 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden absolute top-16 inset-x-0 z-50 backdrop-blur-md bg-dark-600/50 dark:bg-light-200/50 border-b border-dark-400/30 dark:border-light-400/30 shadow-lg"
+            className="md:hidden absolute top-16 inset-x-0 z-50 bg-dark-500 dark:bg-light-100 border-b border-dark-400 dark:border-light-400 shadow-lg"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

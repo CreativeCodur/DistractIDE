@@ -7,7 +7,7 @@ To deploy this project to Vercel without TypeScript errors, follow these steps:
 When configuring your project in Vercel, use the following build command:
 
 ```
-vite build --skipTypeCheck
+vite build
 ```
 
 This will skip the TypeScript type checking during the build process, which will allow the build to succeed despite the TypeScript errors.

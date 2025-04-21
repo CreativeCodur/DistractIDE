@@ -1,0 +1,21 @@
+{
+  "name": "DistractIDE",
+  "short_name": "DistractIDE",
+  "description": "Educational platform for neural networks",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a212e",
+  "theme_color": "#1a212e",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

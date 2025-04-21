@@ -62,7 +62,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-dark-600/80 dark:bg-light-200/80 border-b border-dark-400/30 dark:border-light-400/30">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-transparent border-b border-dark-400/30 dark:border-light-400/30">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto">
         <div className="flex items-center space-x-4">
           <Link to="/" className="flex items-center space-x-2">
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden absolute top-16 inset-x-0 z-50 backdrop-blur-md bg-dark-600/95 dark:bg-light-200/95 border-b border-dark-400/30 dark:border-light-400/30 shadow-lg"
+            className="md:hidden absolute top-16 inset-x-0 z-50 backdrop-blur-md bg-dark-600/70 dark:bg-light-200/70 border-b border-dark-400/30 dark:border-light-400/30 shadow-lg"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

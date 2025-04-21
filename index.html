@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://use.typekit.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://use.typekit.net; font-src 'self' https://fonts.gstatic.com https://use.typekit.net; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    <meta name="robots" content="noindex, nofollow">
+    <title>DistractIDE</title>
+    <!-- Import JetBrains Mono for titles/subtitles and Source Code Pro as a fallback for Input Mono -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap">
+    <!-- Icon shim script to provide missing icons -->
+    <script src="/icon-shim.js"></script>
+    <!-- Fallback script to handle errors -->
+    <script src="/fallback.js"></script>
+    <!-- Error handler script -->
+    <script>
+      // Check if we need to redirect to the direct fix page
+      window.addEventListener('error', function(event) {
+        // Check if the error is related to missing icons
+        if (event.message && event.message.includes('does not provide an export named')) {
+          console.error('Caught module error:', event.message);
+
+          // If we haven't already tried to fix it, redirect to the direct fix page
+          if (!sessionStorage.getItem('fixAttempted')) {
+            sessionStorage.setItem('fixAttempted', 'true');
+            sessionStorage.setItem('originalError', event.message);
+            window.location.href = '/direct-fix.html';
+          }
+        }
+      }, true);
+
+      // Check if we're coming back from the fix page
+      if (window.location.search.includes('fixApplied') ||
+          window.location.search.includes('completeFix')) {
+        console.log('Returning from fix page, applying fixes...');
+
+        // Create a script element to inject our fix
+        const fixScript = document.createElement('script');
+        fixScript.textContent = `
+          // Define our mock icons as React components
+          window.FiBrain = function(props) {
+            return {
+              $$typeof: Symbol.for('react.element'),
+              type: 'svg',
+              props: {
+                ...props,
+                viewBox: '0 0 24 24',
+                fill: 'none',
+                stroke: 'currentColor',
+                strokeWidth: 2,
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                children: [
+                  { type: 'circle', props: { cx: 12, cy: 8, r: 5 } },
+                  { type: 'path', props: { d: 'M12 13v8' } },
+                  { type: 'path', props: { d: 'M9 18h6' } }
+                ]
+              }
+            };
+          };
+
+          window.FiGamepad = function(props) {
+            return {
+              $$typeof: Symbol.for('react.element'),
+              type: 'svg',
+              props: {
+                ...props,
+                viewBox: '0 0 24 24',
+                fill: 'none',
+                stroke: 'currentColor',
+                strokeWidth: 2,
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                children: [
+                  { type: 'rect', props: { x: 2, y: 6, width: 20, height: 12, rx: 2 } },
+                  { type: 'line', props: { x1: 6, y1: 12, x2: 10, y2: 12 } },
+                  { type: 'line', props: { x1: 8, y1: 10, x2: 8, y2: 14 } },
+                  { type: 'circle', props: { cx: 16, cy: 12, r: 1 } }
+                ]
+              }
+            };
+          };
+
+          window.FiPenTool = function(props) {
+            return {
+              $$typeof: Symbol.for('react.element'),
+              type: 'svg',
+              props: {
+                ...props,
+                viewBox: '0 0 24 24',
+                fill: 'none',
+                stroke: 'currentColor',
+                strokeWidth: 2,
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                children: [
+                  { type: 'path', props: { d: 'M12 19l7-7 3 3-7 7-3-3z' } },
+                  { type: 'path', props: { d: 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z' } }
+                ]
+              }
+            };
+          };
+
+          // Patch the module system to provide these icons
+          const originalDefine = Object.defineProperty;
+          Object.defineProperty = function(obj, prop, descriptor) {
+            // Check if this is the react-icons/fi module
+            if (prop === 'FiBrain' || prop === 'FiGamepad' || prop === 'FiPenTool') {
+              console.log('Intercepted defineProperty for ' + prop);
+              descriptor.value = window[prop];
+            }
+            return originalDefine.call(this, obj, prop, descriptor);
+          };
+        `;
+
+        document.head.appendChild(fixScript);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

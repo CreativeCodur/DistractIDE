@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direct Fix for DistractIDE</title>
+  <style>
+    body {
+      font-family: 'Space Grotesk', 'Space Mono', monospace;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      font-family: 'Space Mono', monospace;
+    }
+    h1 {
+      color: #0ea5e9;
+    }
+    button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-family: 'Space Mono', monospace;
+    }
+    button:hover {
+      background-color: #0284c7;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .step {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-left: 3px solid #0ea5e9;
+      background-color: #f8fafc;
+    }
+    .success {
+      color: #10b981;
+      font-weight: bold;
+    }
+    .error {
+      color: #ef4444;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Direct Fix for DistractIDE</h1>
+    <p>This page provides a direct fix for the missing icons issue in DistractIDE.</p>
+    
+    <div class="step">
+      <h2>Step 1: Create Mock Icons</h2>
+      <p>First, we'll create mock versions of the missing icons.</p>
+      <button onclick="createMockIcons()">Create Mock Icons</button>
+      <div id="step1-status"></div>
+    </div>
+    
+    <div class="step">
+      <h2>Step 2: Apply Fix to localStorage</h2>
+      <p>Next, we'll store the fix in localStorage so it persists between page loads.</p>
+      <button onclick="applyFixToLocalStorage()">Apply Fix to localStorage</button>
+      <div id="step2-status"></div>
+    </div>
+    
+    <div class="step">
+      <h2>Step 3: Return to Application</h2>
+      <p>Finally, return to the main application with the fix applied.</p>
+      <button onclick="returnToApplication()">Return to Application</button>
+      <div id="step3-status"></div>
+    </div>
+    
+    <div class="step">
+      <h2>Alternative: Complete Fix</h2>
+      <p>Or simply click this button to apply all fixes at once.</p>
+      <button onclick="applyCompleteFix()">Apply Complete Fix</button>
+      <div id="complete-status"></div>
+    </div>
+    
+    <div class="card">
+      <h3>Technical Details</h3>
+      <p>The issue is that the ModernIcon component is trying to import icons that don't exist in the react-icons/fi package:</p>
+      <pre>FiBrain, FiGamepad, FiPenTool</pre>
+      <p>Our fix creates mock versions of these icons and injects them into the application.</p>
+    </div>
+  </div>
+  
+  <script>
+    // Function to create mock icons
+    function createMockIcons() {
+      const statusElement = document.getElementById('step1-status');
+      statusElement.innerHTML = 'Creating mock icons...';
+      
+      try {
+        // Create a script element to define our mock icons
+        const script = document.createElement('script');
+        script.textContent = `
+          // Define mock icons as global variables
+          window.MockIcons = {
+            FiBrain: function(props) {
+              return {
+                type: 'svg',
+                props: {
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'circle', props: { cx: 12, cy: 8, r: 5 } },
+                    { type: 'path', props: { d: 'M12 13v8' } },
+                    { type: 'path', props: { d: 'M9 18h6' } }
+                  ]
+                }
+              };
+            },
+            FiGamepad: function(props) {
+              return {
+                type: 'svg',
+                props: {
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'rect', props: { x: 2, y: 6, width: 20, height: 12, rx: 2 } },
+                    { type: 'line', props: { x1: 6, y1: 12, x2: 10, y2: 12 } },
+                    { type: 'line', props: { x1: 8, y1: 10, x2: 8, y2: 14 } },
+                    { type: 'circle', props: { cx: 16, cy: 12, r: 1 } }
+                  ]
+                }
+              };
+            },
+            FiPenTool: function(props) {
+              return {
+                type: 'svg',
+                props: {
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'path', props: { d: 'M12 19l7-7 3 3-7 7-3-3z' } },
+                    { type: 'path', props: { d: 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z' } }
+                  ]
+                }
+              };
+            }
+          };
+        `;
+        
+        document.head.appendChild(script);
+        statusElement.innerHTML = '<span class="success">✓ Mock icons created successfully!</span>';
+        return true;
+      } catch (error) {
+        statusElement.innerHTML = `<span class="error">✗ Error creating mock icons: ${error.message}</span>`;
+        return false;
+      }
+    }
+    
+    // Function to apply fix to localStorage
+    function applyFixToLocalStorage() {
+      const statusElement = document.getElementById('step2-status');
+      statusElement.innerHTML = 'Applying fix to localStorage...';
+      
+      try {
+        // Store the fix in localStorage
+        localStorage.setItem('iconFixApplied', 'true');
+        
+        // Store the mock icon definitions
+        const mockIconsCode = `
+          // Mock FiBrain component
+          function FiBrain(props) {
+            return React.createElement('svg', {
+              ...props,
+              viewBox: '0 0 24 24',
+              fill: 'none',
+              stroke: 'currentColor',
+              strokeWidth: 2,
+              strokeLinecap: 'round',
+              strokeLinejoin: 'round'
+            }, [
+              React.createElement('circle', { cx: 12, cy: 8, r: 5, key: 'circle' }),
+              React.createElement('path', { d: 'M12 13v8', key: 'path1' }),
+              React.createElement('path', { d: 'M9 18h6', key: 'path2' })
+            ]);
+          }
+          
+          // Mock FiGamepad component
+          function FiGamepad(props) {
+            return React.createElement('svg', {
+              ...props,
+              viewBox: '0 0 24 24',
+              fill: 'none',
+              stroke: 'currentColor',
+              strokeWidth: 2,
+              strokeLinecap: 'round',
+              strokeLinejoin: 'round'
+            }, [
+              React.createElement('rect', { x: 2, y: 6, width: 20, height: 12, rx: 2, key: 'rect' }),
+              React.createElement('line', { x1: 6, y1: 12, x2: 10, y2: 12, key: 'line1' }),
+              React.createElement('line', { x1: 8, y1: 10, x2: 8, y2: 14, key: 'line2' }),
+              React.createElement('circle', { cx: 16, cy: 12, r: 1, key: 'circle' })
+            ]);
+          }
+          
+          // Mock FiPenTool component
+          function FiPenTool(props) {
+            return React.createElement('svg', {
+              ...props,
+              viewBox: '0 0 24 24',
+              fill: 'none',
+              stroke: 'currentColor',
+              strokeWidth: 2,
+              strokeLinecap: 'round',
+              strokeLinejoin: 'round'
+            }, [
+              React.createElement('path', { d: 'M12 19l7-7 3 3-7 7-3-3z', key: 'path1' }),
+              React.createElement('path', { d: 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z', key: 'path2' })
+            ]);
+          }
+          
+          // Export the components
+          export { FiBrain, FiGamepad, FiPenTool };
+        `;
+        
+        localStorage.setItem('mockIconsCode', mockIconsCode);
+        statusElement.innerHTML = '<span class="success">✓ Fix applied to localStorage successfully!</span>';
+        return true;
+      } catch (error) {
+        statusElement.innerHTML = `<span class="error">✗ Error applying fix to localStorage: ${error.message}</span>`;
+        return false;
+      }
+    }
+    
+    // Function to return to the application
+    function returnToApplication() {
+      const statusElement = document.getElementById('step3-status');
+      statusElement.innerHTML = 'Preparing to return to application...';
+      
+      try {
+        // Create a script to inject our fix into the main application
+        const script = document.createElement('script');
+        script.textContent = `
+          // Set a flag to indicate we're returning from the fix page
+          sessionStorage.setItem('returningFromFix', 'true');
+          
+          // Redirect to the main application
+          window.location.href = '/?fixApplied=' + Date.now();
+        `;
+        
+        document.head.appendChild(script);
+        statusElement.innerHTML = '<span class="success">✓ Returning to application...</span>';
+        return true;
+      } catch (error) {
+        statusElement.innerHTML = `<span class="error">✗ Error returning to application: ${error.message}</span>`;
+        return false;
+      }
+    }
+    
+    // Function to apply the complete fix
+    function applyCompleteFix() {
+      const statusElement = document.getElementById('complete-status');
+      statusElement.innerHTML = 'Applying complete fix...';
+      
+      try {
+        // Apply all fixes
+        const step1Success = createMockIcons();
+        const step2Success = applyFixToLocalStorage();
+        
+        if (step1Success && step2Success) {
+          // Create a special fix script
+          const fixScript = document.createElement('script');
+          fixScript.textContent = `
+            // Create a special module that will be used to patch the react-icons/fi module
+            window.__fixModule = {
+              FiBrain: window.MockIcons.FiBrain,
+              FiGamepad: window.MockIcons.FiGamepad,
+              FiPenTool: window.MockIcons.FiPenTool
+            };
+            
+            // Store this in sessionStorage
+            sessionStorage.setItem('fixModuleCreated', 'true');
+            
+            // Redirect to the main application with a special parameter
+            window.location.href = '/?completeFix=' + Date.now();
+          `;
+          
+          document.head.appendChild(fixScript);
+          statusElement.innerHTML = '<span class="success">✓ Complete fix applied! Redirecting to application...</span>';
+        } else {
+          statusElement.innerHTML = '<span class="error">✗ Error applying complete fix. Please try the individual steps.</span>';
+        }
+      } catch (error) {
+        statusElement.innerHTML = `<span class="error">✗ Error applying complete fix: ${error.message}</span>`;
+      }
+    }
+  </script>
+</body>
+</html>

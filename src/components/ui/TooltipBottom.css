@@ -1,0 +1,7 @@
+/* Tooltip that appears below the element */
+.tooltip-bottom {
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0 !important;
+}

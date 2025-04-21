@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0ea5e9;
+    }
+    button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background-color: #0284c7;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Fix Icons</h1>
+    <p>This page will help fix the ModernIcon component issue without modifying any code.</p>
+    
+    <h2>Instructions</h2>
+    <ol>
+      <li>Click the "Fix Icons" button below</li>
+      <li>This will create a temporary fix for the ModernIcon component</li>
+      <li>Return to the main application</li>
+    </ol>
+    
+    <button onclick="fixIcons()">Fix Icons</button>
+    <button onclick="window.location.href='/'">Go to Homepage</button>
+    
+    <h2>Status</h2>
+    <pre id="status">Ready to fix icons...</pre>
+  </div>
+  
+  <script>
+    function fixIcons() {
+      const statusElement = document.getElementById('status');
+      statusElement.textContent = 'Fixing icons...';
+      
+      try {
+        // Create a simple shim for the missing icons
+        const shimScript = document.createElement('script');
+        shimScript.textContent = `
+          // Create a temporary global object to hold our icon shims
+          window.__IconShims = {
+            // Create shim components for each missing icon
+            FiBrain: function() { 
+              return { 
+                type: 'svg',
+                props: { 
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'path', props: { d: 'M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 0 19.5v-15A2.5 2.5 0 0 1 2.5 2h7z' } },
+                    { type: 'path', props: { d: 'M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 2.5 2.5h7a2.5 2.5 0 0 0 2.5-2.5v-15A2.5 2.5 0 0 0 21.5 2h-7z' } }
+                  ]
+                }
+              };
+            },
+            FiGamepad: function() {
+              return {
+                type: 'svg',
+                props: {
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'rect', props: { x: 2, y: 6, width: 20, height: 12, rx: 2 } },
+                    { type: 'line', props: { x1: 6, y1: 12, x2: 10, y2: 12 } },
+                    { type: 'line', props: { x1: 8, y1: 10, x2: 8, y2: 14 } },
+                    { type: 'circle', props: { cx: 16, cy: 12, r: 1 } },
+                    { type: 'circle', props: { cx: 18, cy: 10, r: 1 } }
+                  ]
+                }
+              };
+            },
+            FiPenTool: function() {
+              return {
+                type: 'svg',
+                props: {
+                  viewBox: '0 0 24 24',
+                  fill: 'none',
+                  stroke: 'currentColor',
+                  strokeWidth: 2,
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  children: [
+                    { type: 'path', props: { d: 'M12 19l7-7 3 3-7 7-3-3z' } },
+                    { type: 'path', props: { d: 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z' } },
+                    { type: 'path', props: { d: 'M2 2l7.586 7.586' } },
+                    { type: 'circle', props: { cx: 11, cy: 11, r: 2 } }
+                  ]
+                }
+              };
+            }
+          };
+          
+          // Intercept imports from react-icons/fi
+          const originalImport = window.import;
+          window.import = function(path) {
+            if (path.includes('react-icons/fi')) {
+              return originalImport(path).then(module => {
+                // Add our shim icons to the module
+                if (!module.FiBrain) module.FiBrain = window.__IconShims.FiBrain;
+                if (!module.FiGamepad) module.FiGamepad = window.__IconShims.FiGamepad;
+                if (!module.FiPenTool) module.FiPenTool = window.__IconShims.FiPenTool;
+                return module;
+              });
+            }
+            return originalImport(path);
+          };
+        `;
+        
+        document.head.appendChild(shimScript);
+        
+        // Set a flag in localStorage to indicate we've applied the fix
+        localStorage.setItem('iconsFixed', 'true');
+        
+        statusElement.textContent = 'Icons fixed successfully! You can now return to the main application.';
+      } catch (error) {
+        statusElement.textContent = 'Error fixing icons: ' + error.message;
+      }
+    }
+    
+    // Check if we've already fixed the icons
+    if (localStorage.getItem('iconsFixed') === 'true') {
+      document.getElementById('status').textContent = 'Icons have already been fixed. You can return to the main application.';
+    }
+  </script>
+</body>
+</html>

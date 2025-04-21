@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0ea5e9;
+    }
+    button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background-color: #0284c7;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DistractIDE Debug Page</h1>
+    <p>This page is working correctly. If you can see this page but the main application is blank, there's likely an issue with the React application.</p>
+    
+    <h2>Troubleshooting Steps</h2>
+    <ol>
+      <li>Check the browser console for errors</li>
+      <li>Try clearing your browser cache</li>
+      <li>Try accessing the application in an incognito/private window</li>
+      <li>Try a different browser</li>
+    </ol>
+    
+    <h2>Quick Actions</h2>
+    <button onclick="clearLocalStorage()">Clear localStorage</button>
+    <button onclick="clearSessionStorage()">Clear sessionStorage</button>
+    <button onclick="window.location.href='/'">Go to Homepage</button>
+    
+    <h2>Local Storage Contents</h2>
+    <pre id="localStorage-content"></pre>
+    
+    <h2>Browser Information</h2>
+    <pre id="browser-info"></pre>
+  </div>
+  
+  <script>
+    // Display localStorage contents
+    function displayLocalStorage() {
+      const content = document.getElementById('localStorage-content');
+      try {
+        const items = { ...localStorage };
+        content.textContent = JSON.stringify(items, null, 2);
+      } catch (e) {
+        content.textContent = 'Error accessing localStorage: ' + e.message;
+      }
+    }
+    
+    // Display browser information
+    function displayBrowserInfo() {
+      const info = document.getElementById('browser-info');
+      info.textContent = `
+User Agent: ${navigator.userAgent}
+Platform: ${navigator.platform}
+Cookies Enabled: ${navigator.cookieEnabled}
+Language: ${navigator.language}
+Window Size: ${window.innerWidth} x ${window.innerHeight}
+      `;
+    }
+    
+    // Clear localStorage
+    function clearLocalStorage() {
+      try {
+        localStorage.clear();
+        alert('localStorage cleared successfully');
+        displayLocalStorage();
+      } catch (e) {
+        alert('Error clearing localStorage: ' + e.message);
+      }
+    }
+    
+    // Clear sessionStorage
+    function clearSessionStorage() {
+      try {
+        sessionStorage.clear();
+        alert('sessionStorage cleared successfully');
+      } catch (e) {
+        alert('Error clearing sessionStorage: ' + e.message);
+      }
+    }
+    
+    // Initialize
+    displayLocalStorage();
+    displayBrowserInfo();
+  </script>
+</body>
+</html>

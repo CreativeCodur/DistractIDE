@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/* Fonts are imported in index.html */
+/* JetBrains Mono for titles/subtitles */
+/* Input Mono for body text */
+
+/* Import custom tooltip styles */
+@import "./components/ui/TooltipBottom.css";
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Default theme color variables */
+  --theme-color: #ffffff;
+  --theme-color-rgb: 255, 255, 255;
+  --theme-color-light: rgba(255, 255, 255, 0.1);
+  --theme-color-medium: rgba(255, 255, 255, 0.3);
+  --theme-color-dark: rgba(255, 255, 255, 0.8);
+
+  /* Component variables */
+  --primary-color: #ffffff;
+  --primary-hover: rgba(255, 255, 255, 0.8);
+  --accent-bg: rgba(255, 255, 255, 0.1);
+  --accent-border: rgba(255, 255, 255, 0.3);
+  --accent-text: #ffffff;
+  --focus-ring: rgba(255, 255, 255, 0.5);
+
+  /* Light mode colors */
+  --bg-primary: #f9fafb;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border-color: rgba(229, 231, 235, 0.5);
+}
+
+body {
+  font-family: 'input-mono', 'Input Mono', 'Source Code Pro', monospace;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  line-height: 1.8;
+}
+
+.dark {
+  --bg-primary: #1a212e;
+  --bg-secondary: #111827;
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --border-color: rgba(75, 85, 99, 0.5);
+}
+
+.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin-bottom: 0.8em;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Typewriter-specific styles */
+.text-xl, .text-2xl, .text-3xl, .text-4xl {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Add subtle typewriter characteristics */
+.typewriter-effect {
+  border-right: 2px solid var(--theme-color);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--theme-color) }
+}
+
+/* Glassmorphism components */
+.glass-panel {
+  background-color: rgba(var(--bg-primary-rgb, 249, 250, 251), 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.dark .glass-panel {
+  background-color: rgba(var(--bg-primary-rgb, 26, 33, 46), 0.7);
+}
+
+.glass-button {
+  background-color: rgba(var(--bg-secondary-rgb, 243, 244, 246), 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.2s;
+  color: var(--text-primary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.glass-button:hover {
+  background-color: var(--accent-bg);
+  color: var(--accent-text);
+  box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.dark .glass-button {
+  background-color: rgba(var(--bg-secondary-rgb, 17, 24, 39), 0.8);
+}
+
+.glass-card {
+  background-color: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+.dark .glass-card {
+  background-color: rgba(var(--bg-primary-rgb, 31, 41, 55), 0.7);
+}
+
+/* Theme color specific elements */
+.bg-theme-light {
+  background-color: var(--theme-color-light);
+}
+
+.bg-theme-medium {
+  background-color: var(--theme-color-medium);
+}
+
+.bg-theme {
+  background-color: var(--theme-color);
+}
+
+.text-theme {
+  color: var(--theme-color);
+}
+
+.border-theme {
+  border-color: var(--theme-color);
+}
+
+.ring-theme {
+  --tw-ring-color: var(--theme-color);
+}
+
+/* Apply theme colors to specific elements */
+
+/* Primary buttons */
+.glass-button[variant="primary"],
+button[variant="primary"] {
+  background-color: var(--theme-color-light);
+  border-color: var(--theme-color-medium);
+  color: var(--theme-color);
+}
+
+.glass-button[variant="primary"]:hover,
+button[variant="primary"]:hover {
+  background-color: var(--theme-color-medium);
+}
+
+/* Active navigation links */
+a.active,
+[aria-current="page"] {
+  background-color: var(--theme-color-light);
+  color: var(--theme-color);
+}
+
+/* Selected items */
+.selected {
+  border-color: var(--theme-color);
+  background-color: var(--theme-color-light);
+}
+
+/* Focus states */
+*:focus-visible {
+  outline-color: var(--theme-color);
+}
+
+/* Accent elements */
+.accent-bg {
+  background-color: var(--theme-color-light);
+}
+
+.accent-border {
+  border-color: var(--theme-color-medium);
+}
+
+.accent-text {
+  color: var(--theme-color);
+}
+
+/* Add RGB variables for backgrounds */
+:root {
+  --bg-primary-rgb: 249, 250, 251;
+  --bg-secondary-rgb: 243, 244, 246;
+}
+
+.dark {
+  --bg-primary-rgb: 26, 33, 46;
+  --bg-secondary-rgb: 17, 24, 39;
+}
+
+/* Fix icon colors in light/dark mode */
+/* Only apply to specific icons that need color adjustment */
+.dark .theme-icon svg {
+  color: #f3f4f6;
+}
+
+body:not(.dark) .theme-icon svg {
+  color: #1f2937;
+}
+
+/* Ensure theme-colored icons are visible in both modes */
+.text-theme svg {
+  color: var(--theme-color);
+}
+
+/* Ensure icons in buttons are visible */
+button svg, a svg {
+  color: currentColor;
+}
+
+/* Tooltip styles */
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  margin-bottom: 0.5rem;
+  width: max-content;
+  max-width: 16rem;
+  padding: 0.5rem;
+  background-color: rgba(17, 24, 39, 0.95);
+  color: #f3f4f6;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.dark .tooltip {
+  background-color: rgba(249, 250, 251, 0.95);
+  color: #111827;
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Font utility classes */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-body {
+  font-family: 'input-mono', 'Input Mono', 'Source Code Pro', monospace;
+  letter-spacing: 0.01em;
+  line-height: 1.8;
+}
